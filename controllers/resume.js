@@ -1,5 +1,6 @@
 const Data = require( '../models/data' );
 
+
 exports.create = ( req, res ) =>
 {
     const data = new Data( req.body );
@@ -17,9 +18,9 @@ exports.create = ( req, res ) =>
         } );
 };
 
-exports.getResume = ( req, res, name ) =>
+exports.resumeByName = ( req, res, next, name ) =>
 {
-    Data.findOne( { name: name } )
+    Data.findOne( { first_name: name } )
         .then( ( data ) =>
         {
             return res.json( data );
@@ -31,5 +32,10 @@ exports.getResume = ( req, res, name ) =>
                 err: "data not found"
             } );
         } );
-
 };
+
+exports.readResume = ( req, res ) =>
+{
+    console.log( req.name );
+    return res.json( re.name );
+}
